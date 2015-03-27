@@ -8,8 +8,9 @@ var easyrtc = require("easyrtc");           // EasyRTC external module
 var httpApp = express();
 httpApp.use(express.static(__dirname));
 
+httpApp.set('port', (process.env.PORT || 5000));
 // Start Express http server on port 8080
-var webServer = http.createServer(httpApp).listen(5000);
+var webServer = http.createServer(httpApp).listen(httpApp.get('port'));
 
 // Start Socket.io so it attaches itself to Express server
 var socketServer = io.listen(webServer, {"log level":1});
